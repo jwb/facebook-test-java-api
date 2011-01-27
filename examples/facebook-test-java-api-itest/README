@@ -1,0 +1,12 @@
+The facebook-test-java-api-itest project verifies the functionality of the API by
+performing test users operations on Facebook.
+
+In order to run the tests, a file called 'facebook-app.properties' must be created in the
+src/test/resources directory. The content of the file should be
+
+facebook.appId=<app ID>
+facebook.appSecret=<app Secret>
+
+The <app ID> and <app Secret> placeholders should contain the values for your application.
+
+Be aware that the integration test will remove all test users in the application when running!

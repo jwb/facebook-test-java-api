@@ -1,0 +1,39 @@
+Provides a Java API for testing Facebook application integration.
+
+Short test example:
+
+/**
+ * This is an example code of how to use the
+ * Facebook Test Java API for asserting
+ * that a system integrates with facebook
+ * correctly.
+ */
+public void FacebookApplicationSystemTest() {
+
+    @Test
+    public void a_user_should_have_a_new_wall_post() {
+        // Setup
+        FacebookTestUserAccount account = createAccount();
+
+        System.out.println("User login URL: " + account.loginUrl());
+        ... Manual login to facebook with cut&paste of the URL
+
+
+        // Act
+        SystemIntegratingWithFacebook system = testContext.getSystem();
+        system.doStuffThatIntegratesWithFacebook();
+
+        // Assert
+        String wall = account.getProfileFeed();
+        // Use your favorite JSON parser/asserter framwork here
+        assertTrue("The post was not found on the wall", wall.contains("System has posted");
+    }
+
+    private FacebookTestUserAccount createAccount() {
+        facebookStore = new HttpClientFacebookTestUserStore(properties.getProperty("facebook.appId"), properties.getProperty("facebook.appSecret"));
+        facebookStore.deleteAllTestUsers();
+        return facebookStore.createTestUser(true, "read-stream");
+    }
+
+}
+
