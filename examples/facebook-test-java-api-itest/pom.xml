@@ -27,7 +27,7 @@
     <artifactId>facebook-test-java-api-itest</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Facebook Test Java API integration tests</name>
-    <description>Integration tests verifying the functionality of the API and show examples of how to use it.
+    <description>Integration tests verifying the functionality of the API and provides examples of how to use it.
     </description>
     <url>http://code.google.com/p/facebook-test-java-api/example-parent/facebook-test-java-api-itest</url>
     <inceptionYear>2011</inceptionYear>
