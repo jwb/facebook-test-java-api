@@ -14,12 +14,10 @@ public void FacebookApplicationSystemTest() {
         // Setup
         FacebookTestUserAccount account = createAccount();
 
-        System.out.println("User login URL: " + account.loginUrl());
-        ... Manual login to facebook with cut&paste of the URL
-
-
         // Act
+
         SystemIntegratingWithFacebook system = testContext.getSystem();
+        system.registerAccessTokenForUser( account.accessToken );
         system.doStuffThatIntegratesWithFacebook();
 
         // Assert
@@ -29,9 +27,8 @@ public void FacebookApplicationSystemTest() {
     }
 
     private FacebookTestUserAccount createAccount() {
-        facebookStore = new HttpClientFacebookTestUserStore(properties.getProperty("facebook.appId"), properties.getProperty("facebook.appSecret"));
-        facebookStore.deleteAllTestUsers();
-        return facebookStore.createTestUser(true, "read-stream");
+        facebookStore = new HttpClientFacebookTestUserStore("<appId>", "<appSecret>"));
+        return facebookStore.createTestUser(true, "read-stream,email");
     }
 }
 

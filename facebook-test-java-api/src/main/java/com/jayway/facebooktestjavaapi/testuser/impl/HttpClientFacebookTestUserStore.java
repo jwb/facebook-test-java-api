@@ -73,7 +73,6 @@ public class HttpClientFacebookTestUserStore implements FacebookTestUserStore {
         return result.substring(prefix.length());
     }
 
-    @Override
     public FacebookTestUserAccount createTestUser(boolean appInstalled, String permissions) {
         init();
 
@@ -95,7 +94,6 @@ public class HttpClientFacebookTestUserStore implements FacebookTestUserStore {
 
     }
 
-    @Override
     public List<FacebookTestUserAccount> getAllTestUsers() {
         init();
 
@@ -115,7 +113,6 @@ public class HttpClientFacebookTestUserStore implements FacebookTestUserStore {
         return result;
     }
 
-    @Override
     public void deleteAllTestUsers() {
         List<FacebookTestUserAccount> accounts = getAllTestUsers();
         for (FacebookTestUserAccount account : accounts) {
