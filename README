@@ -32,4 +32,5 @@ public void FacebookApplicationSystemTest() {
     }
 }
 
-Other examples may be found in the examples directory in the source code.
+Other examples may be found in the examples directory in the source code or go to
+the project page: http://code.google.com/p/facebook-test-java-api
