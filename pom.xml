@@ -57,9 +57,9 @@
     </modules>
 
     <scm>
+        <url>http://github.com/jayway/facebook-test-java-api/tree/${scm.branch}</url>
         <connection>scm:git:git://github.com/jayway/facebook-test-java-api.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:jayway/facebook-test-java-api.git</developerConnection>
-        <url>http://github.com/jayway/facebook-test-java-api/tree/master</url>
+        <developerConnection>scm:git:ssh://git@github.com/jayway/facebook-test-java-api.git</developerConnection>
     </scm>
 
     <issueManagement>
