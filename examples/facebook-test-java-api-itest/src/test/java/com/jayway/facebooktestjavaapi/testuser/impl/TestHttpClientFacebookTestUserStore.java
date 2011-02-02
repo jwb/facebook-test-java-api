@@ -9,6 +9,7 @@ import org.json.simple.parser.ParseException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -23,10 +24,20 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
+ * To execute this integration test, remove the &#64;Ignore annotation and create the file
+ * <code>facebook-app.properties</code> in the <code>resources</code> directory. It should contain the lines
+ * <pre>
+ * facebook.appId=&lt;appId&gt;
+ * facebook.appSecret=&lt;appSecret&gt;
+ * </pre>
+ * Where <code>appId</code> and <code>appSecret</code> is replaced with the real values from
+ *  the Facebook application.
+ * <p/>
  * User: tobias
  * Date: 1/13/11
  * Time: 7:29 AM
  */
+@Ignore
 public class TestHttpClientFacebookTestUserStore {
 
     private static FacebookTestUserStore facebookStore;
