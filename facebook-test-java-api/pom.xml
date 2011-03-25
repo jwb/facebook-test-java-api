@@ -19,11 +19,11 @@
     <parent>
         <artifactId>facebook-test-java-api-parent</artifactId>
         <groupId>com.jayway.facebooktestjavaapi</groupId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.1.1</version>
     </parent>
     <groupId>com.jayway.facebooktestjavaapi</groupId>
     <artifactId>facebook-test-java-api</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.1.1</version>
     <packaging>jar</packaging>
     <name>facebook-test-java-api</name>
     <description>Java API for testing Facebook application integration</description>
