@@ -24,7 +24,7 @@
     </parent>
     <groupId>com.jayway.facebooktestjavaapi</groupId>
     <artifactId>facebook-test-java-api-parent</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Facebook Test Java API Parent POM</name>
     <description>Java API for testing Facebook application integration</description>
