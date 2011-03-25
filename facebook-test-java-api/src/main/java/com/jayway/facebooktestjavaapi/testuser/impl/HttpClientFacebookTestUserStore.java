@@ -120,6 +120,16 @@ public class HttpClientFacebookTestUserStore implements FacebookTestUserStore {
         }
     }
 
+    public String getApplicationId()
+    {
+        return applicationId;
+    }
+
+    public String getAccessToken()
+    {
+        return appAccessToken;
+    }
+
     public boolean isInitialized() {
         return appAccessToken != null;
     }
@@ -278,4 +288,8 @@ public class HttpClientFacebookTestUserStore implements FacebookTestUserStore {
         }
     }
 
+    public String accessToken()
+    {
+        return appAccessToken;
+    }
 }

@@ -25,6 +25,18 @@ public class HttpClientFacebookTestUserAccount implements FacebookTestUserAccoun
         log.debug("Deleted account [{}]: [{}]", id(), result);
     }
 
+    public void copyToOtherApplication(String applicationId, String accessToken, boolean appInstalled, String permissions)
+    {
+        if (permissions == null) {
+            permissions = "email,offline_access";
+        }
+
+        String result = helper.post("/%s/accounts/test-users",
+                helper.buildList("installed", Boolean.toString(appInstalled), "permissions", permissions, "owner_access_token", helper.accessToken()),
+                helper.buildList("access_token", accessToken), applicationId);
+        log.debug("Copied account: " + result);
+    }
+
     public void makeFriends(FacebookTestUserAccount friend) {
         String requestResult = helper.post("/%s/friends/%s", null, helper.buildList("access_token", accessToken()), id(), friend.id());
         log.debug("Creating friend request: " + requestResult);

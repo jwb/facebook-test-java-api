@@ -9,7 +9,6 @@ import org.json.simple.parser.ParseException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -37,10 +36,10 @@ import static org.junit.Assert.fail;
  * Date: 1/13/11
  * Time: 7:29 AM
  */
-@Ignore
 public class TestHttpClientFacebookTestUserStore {
 
-    private static FacebookTestUserStore facebookStore;
+    private static FacebookTestUserStore facebookStore1;
+    private static FacebookTestUserStore facebookStore2;
 
     private JSONParser parser = new JSONParser();
     private static FacebookTestUserAccount account;
@@ -54,15 +53,23 @@ public class TestHttpClientFacebookTestUserStore {
             fail("Could not load 'facebook-app.properties");
         }
         properties.load(stream);
-        facebookStore = new HttpClientFacebookTestUserStore(properties.getProperty("facebook.appId"), properties.getProperty("facebook.appSecret"));
-        facebookStore.deleteAllTestUsers();
-        account = facebookStore.createTestUser(true, "");
+        facebookStore1 = new HttpClientFacebookTestUserStore(properties.getProperty("facebook.appId1"), properties.getProperty("facebook.appSecret1"));
+        facebookStore1.deleteAllTestUsers();
+
+        facebookStore2 = new HttpClientFacebookTestUserStore(properties.getProperty("facebook.appId2"), properties.getProperty("facebook.appSecret2"));
+        facebookStore2.deleteAllTestUsers();
+
+        account = facebookStore1.createTestUser(true, "");
     }
 
     @AfterClass
     public static void afterAllTests() {
-        if (facebookStore != null) {
-            facebookStore.deleteAllTestUsers();
+        if (facebookStore1 != null) {
+            facebookStore1.deleteAllTestUsers();
+        }
+
+        if (facebookStore2 != null) {
+            facebookStore2.deleteAllTestUsers();
         }
     }
 
@@ -81,18 +88,18 @@ public class TestHttpClientFacebookTestUserStore {
         assertNotNull(createdAccount.accessToken());
         assertNotNull(createdAccount.loginUrl());
 
-        assertEquals(2, facebookStore.getAllTestUsers().size());
+        assertEquals(2, facebookStore1.getAllTestUsers().size());
     }
 
     @Test
     public void testDeleteFacebookAccount() {
-        FacebookTestUserAccount createdAccount = facebookStore.createTestUser(true, "");
+        FacebookTestUserAccount createdAccount = facebookStore1.createTestUser(true, "");
 
-        assertEquals(2, facebookStore.getAllTestUsers().size());
+        assertEquals(2, facebookStore1.getAllTestUsers().size());
 
         createdAccount.delete();
 
-        assertEquals(1, facebookStore.getAllTestUsers().size());
+        assertEquals(1, facebookStore1.getAllTestUsers().size());
     }
 
     @Test
@@ -190,6 +197,11 @@ public class TestHttpClientFacebookTestUserStore {
         assertContainsData(account.getCheckins());
     }
 
+    @Test
+    public void testCopyTestUsersToOtherApplication() {
+        account.copyToOtherApplication(facebookStore2.getApplicationId(), facebookStore2.getAccessToken(), false, "email");
+        assertEquals(1, facebookStore2.getAllTestUsers().size());
+    }
 
     // Helpers
     private void assertContainsData(String json) throws ParseException {
@@ -207,7 +219,7 @@ public class TestHttpClientFacebookTestUserStore {
     }
 
     private FacebookTestUserAccount createAccount() {
-        FacebookTestUserAccount account = facebookStore.createTestUser(true, "");
+        FacebookTestUserAccount account = facebookStore1.createTestUser(true, "");
         createdAccounts.add(account);
         return account;
     }
