@@ -20,11 +20,11 @@
     <parent>
         <artifactId>facebook-test-java-api-parent</artifactId>
         <groupId>com.jayway.facebooktestjavaapi</groupId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.1</version>
     </parent>
     <groupId>com.jayway.facebooktestjavaapi.examples</groupId>
     <artifactId>example-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.1</version>
     <packaging>pom</packaging>
     <name>Facebook Test Java API Examples</name>
     <modules>
