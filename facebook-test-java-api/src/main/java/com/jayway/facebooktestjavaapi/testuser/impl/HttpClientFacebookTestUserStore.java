@@ -120,12 +120,12 @@ public class HttpClientFacebookTestUserStore implements FacebookTestUserStore {
         }
     }
 
-    public String getApplicationId()
+    String getApplicationId()
     {
         return applicationId;
     }
 
-    public String getAccessToken()
+    String getAccessToken()
     {
         return appAccessToken;
     }
@@ -286,10 +286,5 @@ public class HttpClientFacebookTestUserStore implements FacebookTestUserStore {
             result.add(new BasicNameValuePair(queryParams[i], queryParams[i + 1]));
             i += 2;
         }
-    }
-
-    public String accessToken()
-    {
-        return appAccessToken;
     }
 }

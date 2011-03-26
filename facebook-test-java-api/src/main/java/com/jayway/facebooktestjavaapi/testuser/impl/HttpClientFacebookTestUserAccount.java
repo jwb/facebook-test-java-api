@@ -1,6 +1,7 @@
 package com.jayway.facebooktestjavaapi.testuser.impl;
 
 import com.jayway.facebooktestjavaapi.testuser.FacebookTestUserAccount;
+import com.jayway.facebooktestjavaapi.testuser.FacebookTestUserStore;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +33,18 @@ public class HttpClientFacebookTestUserAccount implements FacebookTestUserAccoun
         }
 
         String result = helper.post("/%s/accounts/test-users",
-                helper.buildList("installed", Boolean.toString(appInstalled), "permissions", permissions, "owner_access_token", helper.accessToken()),
+                helper.buildList("installed", Boolean.toString(appInstalled), "permissions", permissions, "owner_access_token", helper.getAccessToken()),
                 helper.buildList("access_token", accessToken), applicationId);
         log.debug("Copied account: " + result);
+    }
+
+    public void copyToTestUserStore(FacebookTestUserStore testUserStore, boolean appInstalled, String permissions) {
+        if (testUserStore instanceof HttpClientFacebookTestUserStore) {
+            HttpClientFacebookTestUserStore knownStore = (HttpClientFacebookTestUserStore) testUserStore;
+            copyToOtherApplication(knownStore.getApplicationId(), knownStore.getAccessToken(), appInstalled, permissions);
+        } else {
+            throw new IllegalArgumentException("The provided testUserStore is of unknown type");
+        }
     }
 
     public void makeFriends(FacebookTestUserAccount friend) {

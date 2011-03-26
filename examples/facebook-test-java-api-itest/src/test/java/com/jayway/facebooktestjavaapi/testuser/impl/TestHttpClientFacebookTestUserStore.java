@@ -9,7 +9,6 @@ import org.json.simple.parser.ParseException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -37,11 +36,10 @@ import static org.junit.Assert.fail;
  * Date: 1/13/11
  * Time: 7:29 AM
  */
-@Ignore
 public class TestHttpClientFacebookTestUserStore {
 
-    private static FacebookTestUserStore facebookStore1;
-    private static FacebookTestUserStore facebookStore2;
+    private static HttpClientFacebookTestUserStore facebookStore1;
+    private static HttpClientFacebookTestUserStore facebookStore2;
 
     private JSONParser parser = new JSONParser();
     private static FacebookTestUserAccount account;
@@ -55,6 +53,7 @@ public class TestHttpClientFacebookTestUserStore {
             fail("Could not load 'facebook-app.properties");
         }
         properties.load(stream);
+        stream.close();
         facebookStore1 = new HttpClientFacebookTestUserStore(properties.getProperty("facebook.appId1"), properties.getProperty("facebook.appSecret1"));
         facebookStore1.deleteAllTestUsers();
 
@@ -203,6 +202,35 @@ public class TestHttpClientFacebookTestUserStore {
     public void testCopyTestUsersToOtherApplication() {
         account.copyToOtherApplication(facebookStore2.getApplicationId(), facebookStore2.getAccessToken(), false, "email");
         assertEquals(1, facebookStore2.getAllTestUsers().size());
+        facebookStore2.deleteAllTestUsers();
+    }
+
+    @Test
+    public void testCopyTestUsersToTestUserStore() {
+        account.copyToTestUserStore(facebookStore2, false, "email");
+        assertEquals(1, facebookStore2.getAllTestUsers().size());
+        facebookStore2.deleteAllTestUsers();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void unknownTestUserStoreShouldThrowException() {
+        account.copyToTestUserStore(new FacebookTestUserStore()
+        {
+            public FacebookTestUserAccount createTestUser(boolean appInstalled, String permissions)
+            {
+                return null;
+            }
+
+            public List<FacebookTestUserAccount> getAllTestUsers()
+            {
+                return null;
+            }
+
+            public void deleteAllTestUsers()
+            {
+
+            }
+        }, false, "");
     }
 
     // Helpers

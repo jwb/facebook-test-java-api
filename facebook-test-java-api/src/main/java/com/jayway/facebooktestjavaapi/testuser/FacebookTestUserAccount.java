@@ -21,10 +21,25 @@ public interface FacebookTestUserAccount
      *
      * @param otherApplicationId          The application ID of the other application
      * @param otherApplicationAccessToken The access token for the other application
-     * @param appInstalled                Set to true to have the user automatically accept permissions requested from other application
-     * @param permissions                 The permissions the other application is requesting.
+     * @param appInstalled                True if the account should directly accept the application requesting the specified permissions,
+     *                                    false to use the {@link com.jayway.facebooktestjavaapi.testuser.FacebookTestUserAccount#loginUrl()}}.
+     * @param permissions                 Comma-separated list of permissions for the Facebook application. See
+     *                                    <a href="http://developers.facebook.com/docs/authentication/permissions">Permissions</a>
+     *                                    documentation.
      */
     void copyToOtherApplication(String otherApplicationId, String otherApplicationAccessToken, boolean appInstalled, String permissions);
+
+    /**
+     * Copies this test user to another FacebookTestUserStore.
+     *
+     * @param testUserStore The user store to copy this user to.
+     * @param appInstalled  True if the account should directly accept the application requesting the specified permissions,
+     *                      false to use the {@link com.jayway.facebooktestjavaapi.testuser.FacebookTestUserAccount#loginUrl()}}.
+     * @param permissions   Comma-separated list of permissions for the Facebook application. See
+     *                      <a href="http://developers.facebook.com/docs/authentication/permissions">Permissions</a>
+     *                      documentation.
+     */
+    void copyToTestUserStore(FacebookTestUserStore testUserStore, boolean appInstalled, String permissions);
 
     /**
      * Creates a friend relationship between this test user and the one in the parameter.

@@ -30,14 +30,4 @@ public interface FacebookTestUserStore {
      * Delete all test users registered for a Facebook application.
      */
     void deleteAllTestUsers();
-
-    /**
-     *  @return The application ID for the facebook test user store.
-     */
-    String getApplicationId();
-
-    /**
-     * @return The access token for the application.
-     */
-    String getAccessToken();
 }
