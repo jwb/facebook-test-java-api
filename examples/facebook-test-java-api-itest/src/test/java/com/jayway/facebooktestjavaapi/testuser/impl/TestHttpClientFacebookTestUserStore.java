@@ -26,11 +26,13 @@ import static org.junit.Assert.fail;
  * To execute this integration test, remove the &#64;Ignore annotation and create the file
  * <code>facebook-app.properties</code> in the <code>resources</code> directory. It should contain the lines
  * <pre>
- * facebook.appId=&lt;appId&gt;
- * facebook.appSecret=&lt;appSecret&gt;
+ * facebook.appId1=&lt;appId&gt;
+ * facebook.appSecret1=&lt;appSecret&gt;
+ * facebook.appId2=&lt;appId&gt;
+ * facebook.appSecret2=&lt;appSecret&gt;
  * </pre>
- * Where <code>appId</code> and <code>appSecret</code> is replaced with the real values from
- *  the Facebook application.
+ * Where <code>appId1</code>, <code>appSecret1</code>, <code>appId2</code> and <code>appSecret2</code>
+ * are replaced with the real values from two Facebook applications.
  * <p/>
  * User: tobias
  * Date: 1/13/11
