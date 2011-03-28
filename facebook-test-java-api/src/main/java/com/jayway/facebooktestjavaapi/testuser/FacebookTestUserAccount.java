@@ -42,7 +42,7 @@ public interface FacebookTestUserAccount
     void copyToTestUserStore(FacebookTestUserStore testUserStore, boolean appInstalled, String permissions);
 
     /**
-     * Creates a friend relationship between this test user and the one in the parameter.
+     * Creates a friend relationship between this test user and the test user in the parameter.
      *
      * @param friend A Facebook test user account.
      */
